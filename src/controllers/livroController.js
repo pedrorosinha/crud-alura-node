@@ -39,6 +39,16 @@ class LivroController {
             res.status(500).json({ message: `${erro.message} - falha na atualização` })
         }
     };
+
+    static async excluirLivro (req, res) {
+        try {
+            const id = req.params.id;
+            await livro.findByIdAndDelete(id);
+            res.status(200).json({ message: 'Livro removido com sucesso' });
+        } catch (erro) {
+            res.status(500).json({ message: `${erro.message} - falha para apagar` })
+        }
+    }
 };
 
 export default LivroController;
